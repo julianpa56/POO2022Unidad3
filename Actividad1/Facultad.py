@@ -33,3 +33,26 @@ class Facultad:
 
     def getCodigo(self):
         return self.__codigo
+
+    def listaCarreras(self):
+        for carrera in self.__listaCarreras:
+            print("Carrera: {} --- Duracion: {}".format(carrera.getNombre(),carrera.getDuracion()))
+
+    def getNombre(self):
+        return self.__nombre
+
+    def getLocalidad(self):
+        return self.__localidad
+    
+    def buscar(self,carr: str):
+        respuesta=False
+        i=0
+        b=True
+        while i<len(self.__listaCarreras) and b:
+            if carr.lower() == self.__listaCarreras[i].getNombre().lower():
+                print("CODIGO: {}{} -- NOMBRE FACULTAD: {} -- LOCALIDAD: {}".format(self.getCodigo(),self.__listaCarreras[i].getCodigo(),self.getNombre(),self.getLocalidad()))
+                b=False
+                respuesta=True
+            else:
+                i+=1
+        return respuesta

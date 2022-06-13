@@ -29,9 +29,9 @@ class Coleccion:
     
     def cargarArchivos(self):
         archivo1=open('calefactor-electrico.csv')
-        reader1= csv.reader(archivo1,delimiter=';')
+        reader1= csv.reader(archivo1,delimiter=',')
         archivo2=open('calefactor-a-gas.csv')
-        reader2= csv.reader(archivo2,delimiter=';')
+        reader2= csv.reader(archivo2,delimiter=',')
 
         for fila1 in reader1:
             calefactorElectrico= Electrico(fila1[0],fila1[1],int(fila1[2]))
@@ -62,6 +62,26 @@ class Coleccion:
                 i+=1
         
         print("El calefactor a gas con menor consumo es: MARCA: {} -- MODELO: {}".format(self.__arreCalefactores[menorCosto].getMarca(),self.__arreCalefactores[menorCosto].getModelo()))
+        return menorCosto
 
     def menorConsumoElectrico(self,costoKW,cantidad):
-        pass
+        menorCosto=None
+        i=0
+        while(i<len(self.__arreCalefactores)):
+            if isinstance(self.__arreCalefactores[i],Electrico):
+                if menorCosto==None:
+                    menorCosto=i
+                else:
+                    if self.__arreCalefactores[menorCosto].calcularConsumo(costoKW,cantidad)>self.__arreCalefactores[i].calcularConsumo(costoKW,cantidad):
+                        menorCosto=i
+                    else:
+                        i+=1
+            else:
+                i+=1
+        
+        print("El calefactor electrico con menor consumo es: MARCA: {} -- MODELO: {}".format(self.__arreCalefactores[menorCosto].getMarca(),self.__arreCalefactores[menorCosto].getModelo()))
+        return menorCosto
+
+
+    def mostrarDatos(self,indice):
+        print(self.__arreCalefactores[int(indice)])

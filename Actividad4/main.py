@@ -20,4 +20,8 @@ if __name__=='__main__':
     cantidad2=int(input("Ingrese cantidad que se estima a consumir por hora: "))
     resultado2= coleccion.menorConsumoElectrico(costoKW,cantidad2)
 
-    
+    print("Teniendo en cuenta los dos ítems anteriores, muestre: tipo de calefactor y todos los datos del calefactor de menor consumo.")
+
+    coleccion.mostrarDatos(resultado1)
+    print("-------------")
+    coleccion.mostrarDatos(resultado2)
